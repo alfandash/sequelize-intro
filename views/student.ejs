@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Students</title>
+  </head>
+  <body>
+    <h2>Table Students Data</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <% dTableHeader.forEach(row=>{%>
+          <th><%= row %></th>
+          <% }) %>
+        </tr>
+      </thead>
+      <tbody>
+        <% dStudents.forEach(row=>{%>
+        <tr>
+          <td><%= row.id %></td>
+          <td><%= row.first_name %></td>
+          <td><%= row.last_name %></td>
+          <td><%= row.email %></td>
+          <td><%= row.createdAt %></td>
+          <td><%= row.updatedAt %></td>
+          <td><a href="student/edit?id=<%= row.id %>">Edit</a></td>
+          <td><a href="student/delete?id=<%= row.id %>" onclick="return confirm('Kamu yakin ingin hapus <%= row.first_name %> ?');">Delete</a></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <br>
+    <h3>Input data student</h3>
+    <h4 style="color:red"><%= error %></h4>
+    <br>
+    <form action="/student" method="post">
+      <label> First name</label><br>
+      <input type="text" name="first_name"><br>
+      <label> Last name</label><br>
+      <input type="text" name="last_name"><br>
+      <label> Email</label><br>
+      <input type="text" name="email"><br>
+      <button type="submit">Simpan student</button>
+    </form>
+    <br>
+    <a href="/"><button type="button">Back to Index</button></a>
+  </body>
+</html>

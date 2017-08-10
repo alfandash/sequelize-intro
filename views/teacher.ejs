@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teachers</title>
+  </head>
+  <body>
+    <h2>Table teacher data</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <% dTableHeader.forEach(row=>{%>
+          <th><%= row %></th>
+          <% }) %>
+        </tr>
+      </thead>
+      <tbody>
+        <% dTeachers.forEach(row=>{%>
+        <tr>
+          <td><%= row.id %></td>
+          <td><%= row.first_name %></td>
+          <td><%= row.last_name %></td>
+          <td><%= row.email %></td>
+          <td><%= row.createdAt %></td>
+          <td><%= row.updatedAt %></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <form action="/teacher" method="post">
+      <label> First name</label><br>
+      <input type="text" name="first_name"><br>
+      <label> Last name</label><br>
+      <input type="text" name="last_name"><br>
+      <label> Email</label><br>
+      <input type="text" name="email"><br>
+      <button type="submit">Simpan teachers</button>
+    </form>
+    <a href="/"><button type="button">Back to Index</button></a>
+  </body>
+</html>
