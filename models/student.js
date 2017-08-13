@@ -17,9 +17,11 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   student.associate = models => {
-    student.hasMany(models.SubjectStudent,{
-      foreignKey:"idStudents"
+    student.belongsToMany(models.subject,{
+      through:models.SubjectStudent,
+      foreignKey: 'idStudents'
     })
   }
+
   return student;
 };

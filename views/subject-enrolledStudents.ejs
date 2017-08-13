@@ -6,32 +6,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
   <body>
-    <h2>Data Table Subject</h2>
+    <h2>Mata pelajaran: <%= subject.subject_name%></h2>
     <table class="table">
       <thead class="thead-default">
         <tr>
-          <td>Id</td>
-          <td>Subject Name</td>
-          <td>Teachers</td>
-          <td>Actions</td>
+          <td>#</td>
+          <td>Name</td>
+          <td>Score</td>
         </tr>
       </thead>
       <tbody class="">
-        <% data.forEach(x=>{%>
+        <% students.forEach(x=>{%>
           <tr>
             <td><%= x.id %></td>
-            <td><%= x.subject_name %></td>
-            <td>
-                <%-x.teachers.map((z,x=0)=>{ x++; return `${x}. `+z.first_name+`<br>`})%>
-            </td>
-            <td><a href="/subject/enrolledStudents?id=<%= x.id %>">Enrolled Students</a></td>
+            <td><%= x.first_name+' '+x.last_name %></td>
+            <%if(x.SubjectStudent.score===null){%><td><a href="/subject/giveScore?idSubject=<%=subject.id%>&idUser=<%=x.id%>">Give a score</a></td><%} else {%><td><%=x.SubjectStudent.score%></td><%}%>
           </tr>
         <% }) %>
       </tbody>
     </table>
     <br>
     <br>
-    <a href="\"><button type="button"> Back to Index</button></a>
+    <a href="\subject"><button type="button"> Back to Subject</button></a>
 
   </body>
 </html>

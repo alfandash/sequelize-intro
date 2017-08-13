@@ -4,7 +4,11 @@ const router = express.Router();
 var models = require('../models')
 
 router.get(`/`,(req, res)=>{
-  models.student.findAll()
+  models.student.findAll({
+    order: [
+      ['first_name','ASC']
+    ]
+  })
   .then(students=>{
     var tableHeader = (Object.keys(students[0].dataValues))
     res.render(`student`,{dStudents: students, dTableHeader: tableHeader, error: req.query.error})

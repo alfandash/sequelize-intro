@@ -4,7 +4,11 @@ const router = express.Router();
 var models = require('../models');
 
 router.get(`/`,(req,res)=>{
-  models.teacher.findAll()
+  models.teacher.findAll({
+    order: [
+      ['first_name','ASC']
+    ]
+  })
   .then(teachers=>{
     models.subject.findAll()
     .then((subjects)=>{
