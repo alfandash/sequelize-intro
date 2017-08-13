@@ -21,8 +21,11 @@
           <td><%= row.first_name %></td>
           <td><%= row.last_name %></td>
           <td><%= row.email %></td>
+          <%if(row.id_subjects===null){%><td>unassigned</td><%} else {%><td><%=row.id_subjects%></td><%}%>
           <td><%= row.createdAt %></td>
           <td><%= row.updatedAt %></td>
+          <td><a href="teacher/edit?id=<%= row.id %>">Edit</a></td>
+          <td><a href="teacher/delete?id=<%= row.id %>" onclick="return confirm('Kamu yakin ingin hapus <%= row.first_name %> ?');">Delete</a></td>
         </tr>
         <%})%>
       </tbody>
@@ -36,6 +39,12 @@
       <input type="text" name="last_name"><br>
       <label> Email</label><br>
       <input type="text" name="email"><br>
+      <label> Mata Pelajaran</label><br>
+      <select name="id_subjects">
+        <% dSubjects.forEach((z)=>{ %>
+        <option value="<%=z.id%>"><%=z.subject_name%></option>
+        <%})%>
+      </select><br>
       <button type="submit">Simpan teachers</button>
     </form>
     <a href="/"><button type="button">Back to Index</button></a>

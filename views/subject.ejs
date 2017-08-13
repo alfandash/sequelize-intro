@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Table Subject</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
   <body>
     <h2>Data Table Subject</h2>
-    <table border="1">
-      <thead>
+    <table class="table">
+      <thead class="thead-default">
         <tr>
-          <% dTableHeader.forEach(x=>{%>
-          <th><%= x%></th>
-          <% }) %>
+          <td>Id</td>
+          <td>Subject Name</td>
+          <td>Teachers</td>
         </tr>
       </thead>
-      <tbody>
-        <% dSubject.forEach(x=>{%>
+      <tbody class="">
+        <% data.forEach(x=>{%>
           <tr>
             <td><%= x.id %></td>
             <td><%= x.subject_name %></td>
-            <td><%= x.createdAt %></td>
-            <td><%= x.updatedAt %></td>
+            <td>
+                <%-x.teachers.map((z,x=0)=>{ x++; return `${x}. `+z.first_name+`<br>`})%>
+            </td>
           </tr>
         <% }) %>
       </tbody>

@@ -3,15 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Students</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
   <body>
-    <h2>Table Students Data</h2>
-    <table border="1">
-      <thead>
+    <h2>Table Students   Data</h2>
+    <table class="table">
+      <thead class="thead-default">
         <tr>
-          <% dTableHeader.forEach(row=>{%>
-          <th><%= row %></th>
-          <% }) %>
+          <th>#</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Action</th>
+          <th>Options</th>
         </tr>
       </thead>
       <tbody>
@@ -21,10 +25,8 @@
           <td><%= row.first_name %></td>
           <td><%= row.last_name %></td>
           <td><%= row.email %></td>
-          <td><%= row.createdAt %></td>
-          <td><%= row.updatedAt %></td>
-          <td><a href="student/edit?id=<%= row.id %>">Edit</a></td>
-          <td><a href="student/delete?id=<%= row.id %>" onclick="return confirm('Kamu yakin ingin hapus <%= row.first_name %> ?');">Delete</a></td>
+          <td><a href="student/addSubject?id=<%= row.id %>">Assign Subject</a></td>
+          <td><a href="student/edit?id=<%= row.id %>">Edit</a> | <a href="student/delete?id=<%= row.id %>" onclick="return confirm('Kamu yakin ingin hapus <%= row.first_name %> ?');">Delete</a></td>
         </tr>
         <%})%>
       </tbody>

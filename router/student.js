@@ -60,7 +60,7 @@ router.post(`/edit`,(req,res)=>{
 
   models.student.update(update,{
     where:{
-      id: `${req.query.id}`
+      id: req.query.id
     }
   })
   .then(()=>{
@@ -69,7 +69,39 @@ router.post(`/edit`,(req,res)=>{
   .catch((err)=>{
     res.redirect(`/student?error=`+err)
   })
-
 })
+
+router.get(`/addSubject`,(req,res)=>{
+  models.student.findById(req.query.id)
+  .then((studentRow)=>{
+    models.subject.findAll()
+    .then((subjectRows)=>{
+      res.render(`student-addSubject`,{ student:studentRow, subjects:subjectRows})
+    })
+  })
+  .catch((err)=>{
+    res.send(err)
+  })
+})
+
+router.post(`/addSubject`,(req,res)=>{
+  var add = {
+    idSubjects: req.body.idSubjects,
+    idStudents: req.query.id
+  }
+  console.log(add);
+
+
+  models.SubjectStudent.create(add)
+  .then(()=>{
+    res.redirect(`/student`);
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.redirect(`/student?error=`+err.message)
+  })
+})
+
+
 
 module.exports = router

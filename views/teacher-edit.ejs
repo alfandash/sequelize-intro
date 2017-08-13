@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Teacher</title>
+  </head>
+  <body>
+    <h2>Edit Teacher</h2>
+    <br>
+    <form action="/teacher" method="post">
+      <label> First name</label><br>
+      <input type="text" name="first_name" value="<%=dTeacher.first_name%>"><br>
+      <label> Last name</label><br>
+      <input type="text" name="last_name" value="<%=dTeacher.last_name%>"><br>
+      <label> Email</label><br>
+      <input type="text" name="email" value="<%=dTeacher.email%>"><br>
+      <select name="id_subjects">
+        <% dSubjects.forEach((z)=>{ %>
+        <option value="<%=z.id%>" <%if(dTeacher.id_subjects ===z.id){%>SELECTED<%}%>><%=z.subject_name%></option>
+        <%})%>
+      </select><br>
+      <button type="submit">Edit teachers</button>
+      <a href="/teacher"><button type="button">Cancel</button></a>
+    </form>
+  </body>
+</html>
