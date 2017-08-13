@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Landing page</title>
-  </head>
-  <body>
-    <h1><%= welcome %></h1>
-    <a href="teacher">teacher</a>
-    <a href="subject">subject</a>
-    <a href="student">student</a>
-  </body>
-</html>
+<%- include layout/header %>
+<br>
+<%- include layout/menu %>
+<br>
+<h1><%= welcome %></h1>
+<ol>
+  <li><a href="teacher">teacher</a></li>
+  <li><a href="subject">subject</a></li>
+  <li><a href="student">student</a></li>
+</ol>
+<%- include layout/footer %>

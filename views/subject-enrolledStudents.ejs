@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Table Subject</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  </head>
-  <body>
+<%- include layout/header %>
+    <br>
     <h2>Mata pelajaran: <%= subject.subject_name%></h2>
-    <table class="table">
+    <table class="table table-striped">
       <thead class="thead-default">
         <tr>
-          <td>#</td>
-          <td>Name</td>
-          <td>Score By Number</td>
-          <td>Score By Letter</td>
+          <th>#</th>
+          <th>Name</th>
+          <th>Score By Number</th>
+          <th>Score By Letter</th>
         </tr>
       </thead>
-      <tbody class="">
+      <tbody>
         <% students.forEach(x=>{%>
           <tr>
             <td><%= x.id %></td>
@@ -28,8 +22,5 @@
       </tbody>
     </table>
     <br>
-    <br>
-    <a href="\subject"><button type="button"> Back to Subject</button></a>
-
-  </body>
-</html>
+    <a href="\subject"><button class="btn btn-danger" type="button"> Back to Subject</button></a>
+<%- include layout/footer %>
