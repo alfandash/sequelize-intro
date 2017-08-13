@@ -2,6 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 var models = require('../models');
+var convertScore = require('../helpers/scoreLetter')
+
+function processConvertScore(studentRows,cb) {
+  var num = 0;
+  //console.log(studentRows);
+  studentRows.forEach(x=>{
+    var letter = convertScore(x.SubjectStudent.score)
+    x.scoreLetter = letter
+    num++
+    //console.log(studentRows);
+    if(num === studentRows.length){
+      cb(studentRows)
+    }
+  })
+}
+
 
 router.get(`/`,(req,res)=>{
 
@@ -46,10 +62,15 @@ router.get(`/enrolledStudents`,(req,res)=>{
       ]
     })
     .then((studentRows)=>{
-      res.render(`subject-enrolledStudents`, {
-        subject:subjectRow,
-        students:studentRows
+      processConvertScore(studentRows,(row)=>{
+        //console.log(row);
+
+        res.render(`subject-enrolledStudents`, {
+          subject:subjectRow,
+          students:row
+        })
       })
+
     })
   })
 })
