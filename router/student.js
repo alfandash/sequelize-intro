@@ -3,6 +3,18 @@ const router = express.Router();
 
 var models = require('../models')
 
+router.use((req,res,next)=>{
+  if(!req.session.hasLogin){
+    res.redirect('/')
+  } else {
+    if(req.session.role === 'academic' || req.session.role === 'headmaster'){
+      next()
+    } else {
+      res.redirect('/?error=dont have access to this menu')
+    }
+  }
+})
+
 router.get(`/`,(req, res)=>{
   models.student.findAll({
     order: [
@@ -11,7 +23,11 @@ router.get(`/`,(req, res)=>{
   })
   .then(students=>{
     var tableHeader = (Object.keys(students[0].dataValues))
-    res.render(`student`,{dStudents: students, dTableHeader: tableHeader, error: req.query.error})
+    res.render(`student`,{
+      dStudents: students,
+      dTableHeader: tableHeader,
+      error: req.query.error,
+      session: req.session})
   })
 })
 
@@ -51,7 +67,8 @@ router.get(`/edit`,(req,res)=>{
   models.student.findById(req.query.id)
   .then(row=>{
     //res.send(row)
-    res.render(`student-edit`,{dStudent:row})
+    res.render(`student-edit`,{dStudent:row,
+    session: req.session})
   })
 })
 
@@ -80,7 +97,10 @@ router.get(`/addSubject`,(req,res)=>{
   .then((studentRow)=>{
     models.subject.findAll()
     .then((subjectRows)=>{
-      res.render(`student-addSubject`,{ student:studentRow, subjects:subjectRows})
+      res.render(`student-addSubject`,{
+        student:studentRow,
+        subjects:subjectRows,
+        session: req.session})
     })
   })
   .catch((err)=>{

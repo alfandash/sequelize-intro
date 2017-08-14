@@ -7,10 +7,20 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//ejs
+//express session
+const session = require('express-session')
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUnitiaized: true,
+  cookie: {}
+}))
+
+//view engine
 app.set(`view engine`,`ejs`)
 
 //add router
+const loginRoute = require(`./router/login`)
 const indexRoute = require(`./router/index`);
 const teachersRoute = require(`./router/teacher`);
 const subjectRoute = require('./router/subject');
