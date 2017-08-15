@@ -12,7 +12,8 @@ module.exports = {
 
     return queryInterface.addColumn('Users',
     'secret',{
-      type:Sequelize.STRING
+      type:Sequelize.STRING,
+      unique:true
     })
   },
 

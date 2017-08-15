@@ -34,6 +34,6 @@ app.use(`/teacher`, teachersRoute);
 app.use(`/subject`, subjectRoute);
 app.use(`/student`, studentRoute)
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
   console.log(`run in port 3000`);
 })
