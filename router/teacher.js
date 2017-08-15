@@ -92,5 +92,29 @@ router.get(`/edit`, (req, res) => {
     })
 })
 
+router.post(`/edit`, (req,res)=>{
+  var update = {
+    first_name: `${req.body.first_name}`,
+    last_name: `${req.body.last_name}`,
+    email: `${req.body.email}`,
+    id_subjects: `${req.body.id_subjects}`
+  }
+  console.log(update);
+  models.teacher.update(update,{
+    where:{
+      id: req.query.id
+    }
+  })
+  .then(()=>{
+    res.redirect(`/teacher`)
+  })
+  .catch((err)=>{
+    res.redirect(`/teacher?error=`+err)
+  })
+
+
+
+})
+
 
 module.exports = router
