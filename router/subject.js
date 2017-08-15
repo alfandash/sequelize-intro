@@ -94,10 +94,15 @@ router.get(`/enrolledStudents`, (req, res) => {
 })
 
 router.get(`/giveScore`, (req, res) => {
-  models.student.findById(req.query.idUser)
-    .then((rowStudent) => {
-      models.subject.findById(req.query.idSubject)
-        .then((rowSubject) => {
+  // models.student.findById(req.query.idUser)
+  //   .then((rowStudent) => {
+  //     models.subject.findById(req.query.idSubject)
+  //       .then((rowSubject) => {
+
+  models.subject.findById(req.query.idSubject)
+    .then((rowSubject) => {
+      models.student.findById(req.query.idUser)
+        .then((rowStudent) => {
           res.render(`subject-score`, {
             student: rowStudent,
             subject: rowSubject,

@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+// crypto
+const crypto = require("crypto");
+
 //express session
 const session = require('express-session')
 app.use(session({

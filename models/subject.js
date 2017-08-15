@@ -15,22 +15,5 @@ module.exports = function(sequelize, DataTypes) {
     })
   }
 
-  // subject.associate = models => {
-  //   subject.hasMany(models.SubjectStudent,{
-  //     foreignKey: "idSubjects"
-  //   })
-  // }
-
   return subject;
 };
-
-// , {
-//   classMethods: {
-//     associate: function(models) {
-//       // associations can be defined here
-//       subject.hasMany(models.teacher,{
-//         foreignKey: 'id_subjects'
-//       })
-//     }
-//   }
-// }
