@@ -113,9 +113,6 @@ router.post(`/addSubject`,(req,res)=>{
     idSubjects: req.body.idSubjects,
     idStudents: req.query.id
   }
-  console.log(add);
-
-
   models.SubjectStudent.create(add)
   .then(()=>{
     res.redirect(`/student`);
