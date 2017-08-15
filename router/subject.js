@@ -124,10 +124,10 @@ router.post(`/giveScore`, (req, res) => {
       }
     })
     .then(() => {
-      res.redirect(`/subject`)
+      res.redirect(`/subject/enrolledStudents?id=`+req.query.idSubject)
     })
     .catch((err) => {
-      res.send(err)
+      res.redirect(`/subject/enrolledStudents?error=`+err)
     })
 })
 
